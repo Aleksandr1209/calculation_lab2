@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from PyQt5 import QtWidgets
 
 # Form implementation generated from reading ui file 'Design1.ui'
 #
@@ -17,6 +16,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     ui = UiDialog()
-    ui.setupUi(Dialog)
+    ui.setup_ui(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
