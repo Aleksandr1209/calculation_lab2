@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from labellines import labelLines
 from scipy.integrate import odeint
 
 from functions import pend, fak_1, fak_2, fak_3, fak_4, fak_6, fak_7
@@ -44,11 +45,14 @@ def create_graphic(t, data, labels, faks):
     fig, axs = plt.subplots(figsize=(15, 10))
     plt.subplot(111)
     for i in range(23):
-        plt.plot(t, data[:, i], color=lines[i][0], linestyle=lines[i][1], label=labels[i])
-    plt.xlabel("t")
-    plt.legend(loc=(.75, .64), labelspacing=0.1, fontsize='small')
-    plt.draw()
+        plt.plot(t, list(map(lambda elem: 0 if elem < 0 else elem, data[:, i])), color=lines[i][0],
+                 linestyle=lines[i][1], label=f"X{i + 1}")
+    plt.xlabel("t, время", fontsize=14)
+    plt.ylabel("Характеристики", fontsize=14)
+    labelLines(plt.gca().get_lines(), fontsize=14)
     plt.xlim([0, 1])
+    plt.ylim(bottom=0)
+    plt.draw()
     draw_third_graphic(t, faks)
     fig.savefig('./graphics/figure.png')
 
@@ -76,8 +80,10 @@ def draw_third_graphic(t, faks):
     plt.plot(t, y4, label='Fak4')
     plt.plot(t, y5, label='Fak6')
     plt.plot(t, y6, label='Fak7')
+    plt.xlabel("t, время", fontsize=14)
+    plt.ylabel("Возмущения", fontsize=14)
+    labelLines(plt.gca().get_lines(), fontsize=14)
     plt.legend(loc='best')
-    plt.xlabel('t')
     plt.draw()
     fig.savefig("./graphics/figure2.png")
 

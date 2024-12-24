@@ -306,7 +306,7 @@ class UiDialog(object):
 
             self.labels[f"u_restrictions{i}"] = QtWidgets.QLabel(self.initial_equations_scroll_area_widget)
             self.labels[f"u_restrictions{i}"].setObjectName(f"labels_u_restrictions{i}")
-            self.labels[f"u_restrictions{i}"].setText("Ограничение:")
+            self.labels[f"u_restrictions{i}"].setText("Предельное значение:")
             self.initial_equations_scroll_widget_layout.addWidget(self.labels[f"u_restrictions{i}"], i - 1, 8, 1, 2)
 
             self.lineEdits[f"u_restrictions{i}"] = QtWidgets.QLineEdit(self.initial_equations_scroll_area_widget)
@@ -322,7 +322,7 @@ class UiDialog(object):
             self.labels[f"fak{i}_1"] = QtWidgets.QLabel(self.fak_group_box)
             self.labels[f"fak{i}_1"].setGeometry(QtCore.QRect(11, margin_top, 50, 16))
             self.labels[f"fak{i}_1"].setObjectName(f"labels_fak{i}_1")
-            self.labels[f"fak{i}_1"].setText(f"Fak{i}(x)=")
+            self.labels[f"fak{i}_1"].setText(f"Fak{i}(t)=")
 
             self.lineEdits[f"fak{i}_1"] = QtWidgets.QLineEdit(self.fak_group_box)
             self.lineEdits[f"fak{i}_1"].setGeometry(QtCore.QRect(68, margin_top, 42, 20))
@@ -333,7 +333,7 @@ class UiDialog(object):
             self.labels[f"fak{i}_2"] = QtWidgets.QLabel(self.fak_group_box)
             self.labels[f"fak{i}_2"].setGeometry(QtCore.QRect(113, margin_top, 41, 16))
             self.labels[f"fak{i}_2"].setObjectName(f"labels_fak{i}_2")
-            self.labels[f"fak{i}_2"].setText("*x^3+")
+            self.labels[f"fak{i}_2"].setText("*t^3+")
 
             self.lineEdits[f"fak{i}_2"] = QtWidgets.QLineEdit(self.fak_group_box)
             self.lineEdits[f"fak{i}_2"].setGeometry(QtCore.QRect(156, margin_top, 42, 20))
@@ -344,7 +344,7 @@ class UiDialog(object):
             self.labels[f"fak{i}_3"] = QtWidgets.QLabel(self.fak_group_box)
             self.labels[f"fak{i}_3"].setGeometry(QtCore.QRect(201, margin_top, 41, 16))
             self.labels[f"fak{i}_3"].setObjectName(f"labels_fak{i}_3")
-            self.labels[f"fak{i}_3"].setText("*x^2+")
+            self.labels[f"fak{i}_3"].setText("*t^2+")
 
             self.lineEdits[f"fak{i}_3"] = QtWidgets.QLineEdit(self.fak_group_box)
             self.lineEdits[f"fak{i}_3"].setGeometry(QtCore.QRect(243, margin_top, 42, 20))
@@ -355,7 +355,7 @@ class UiDialog(object):
             self.labels[f"fak{i}_4"] = QtWidgets.QLabel(self.fak_group_box)
             self.labels[f"fak{i}_4"].setGeometry(QtCore.QRect(289, margin_top, 41, 16))
             self.labels[f"fak{i}_4"].setObjectName(f"labels_fak{i}_4")
-            self.labels[f"fak{i}_4"].setText("*x+")
+            self.labels[f"fak{i}_4"].setText("*t+")
 
             self.lineEdits[f"fak{i}_4"] = QtWidgets.QLineEdit(self.fak_group_box)
             self.lineEdits[f"fak{i}_4"].setGeometry(QtCore.QRect(316, margin_top, 42, 20))
