@@ -18,7 +18,9 @@ def handle(ui):
         get_initial_equations_from_inputs(ui),
         get_faks_from_inputs(ui),
         get_equations_from_inputs(ui),
-        get_restrictions(ui)
+        get_restrictions(ui),
+        float(ui.threshold_input_min.text()),
+        float(ui.threshold_input_max.text())
     ))
 
 
@@ -41,20 +43,25 @@ def fill_diagrams(ui, data, initial_equations, labels, restrictions):
     ui.label_62.setPixmap(QtGui.QPixmap('graphics/diagram5.png'))
 
 
-def create_graphic(t, data, labels, faks):
+def create_graphic(t, data, labels, faks, lower=0.2, upper=1.0):
+    from functions import normalize_and_threshold_all
+
+    data_processed = normalize_and_threshold_all(data, lower, upper)
+
     fig, axs = plt.subplots(figsize=(15, 10))
     plt.subplot(111)
     for i in range(23):
-        plt.plot(t, list(map(lambda elem: 0 if elem < 0 else elem, data[:, i])), color=lines[i][0],
+        plt.plot(t, data_processed[:, i], color=lines[i][0],
                  linestyle=lines[i][1], label=f"X{i + 1}")
     plt.xlabel("t, время", fontsize=14)
-    plt.ylabel("Характеристики", fontsize=14)
+    plt.ylabel("Характеристики (норм.)", fontsize=14)
     labelLines(plt.gca().get_lines(), fontsize=14)
     plt.xlim([0, 1])
-    plt.ylim(bottom=0)
+    plt.ylim(bottom=lower, top=upper + 0.05)
     plt.draw()
     draw_third_graphic(t, faks)
     fig.savefig('./graphics/figure.png')
+
 
 
 def draw_third_graphic(t, faks):
@@ -88,7 +95,7 @@ def draw_third_graphic(t, faks):
     fig.savefig("./graphics/figure2.png")
 
 
-def process(ui, initial_equations, faks, equations, restrictions):
+def process(ui, initial_equations, faks, equations, restrictions, lower=0.2, upper=1.0):
     global data_sol
 
     t = np.linspace(0, 1)
@@ -96,7 +103,7 @@ def process(ui, initial_equations, faks, equations, restrictions):
 
     ui.expression_lineEdit_41.setText("Выполнено")
 
-    create_graphic(t, data_sol, ui.u_list, faks)
+    create_graphic(t, data_sol, ui.u_list, faks, lower, upper)
 
     ui.label_15.setPixmap(QtGui.QPixmap('./graphics/figure.png'))
     fill_diagrams(ui, data_sol, initial_equations, ui.u_list, restrictions)

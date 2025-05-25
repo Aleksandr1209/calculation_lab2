@@ -82,6 +82,27 @@ class UiDialog(object):
         self.expression_lineEdit_41.setGeometry(QtCore.QRect(155, 120, 113, 22))
         self.expression_lineEdit_41.setAlignment(QtCore.Qt.AlignCenter)
         self.expression_lineEdit_41.setObjectName("expression_lineEdit_41")
+
+        # Добавляем перед кнопкой "Вычислить"
+        self.threshold_label_min = QtWidgets.QLabel(self.control_group_box)
+        self.threshold_label_min.setGeometry(QtCore.QRect(90, 80, 150, 16))
+        self.threshold_label_min.setText("Нижний порог (0.2):")
+
+        self.threshold_input_min = QtWidgets.QLineEdit(self.control_group_box)
+        self.threshold_input_min.setGeometry(QtCore.QRect(240, 80, 50, 22))
+        self.threshold_input_min.setText("0.2")
+        # self.threshold_input.setValidator(QtGui.QDoubleValidator(0.2, 1.0, 2))
+
+        # Верхний порог (под нижним порогом)
+        self.threshold_label_max = QtWidgets.QLabel(self.control_group_box)
+        self.threshold_label_max.setGeometry(QtCore.QRect(90, 60, 150, 16))  # 80 → 110
+        self.threshold_label_max.setText("Верхний порог (1.0):")
+
+        self.threshold_input_max = QtWidgets.QLineEdit(self.control_group_box)
+        self.threshold_input_max.setGeometry(QtCore.QRect(240, 60, 50, 22))  # 80 → 110
+        self.threshold_input_max.setText("1.0")
+        # self.threshold_input_max.setValidator(QtGui.QDoubleValidator(0.2, 1.0, 2))
+
         self.pushButton = QtWidgets.QPushButton(self.control_group_box)
         self.pushButton.setGeometry(QtCore.QRect(150, 160, 121, 31))
         self.pushButton.setObjectName("pushButton")

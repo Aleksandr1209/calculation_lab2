@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def fak_1(t, params):
     return params[0] * t + params[1]
 
@@ -203,3 +206,22 @@ def pend(u, t, faks, f):
 
 def fx(x, params):
     return (params[0] * x) ** 3 + (params[1] * x) ** 2 + (params[2] * x) + params[3]
+
+def min_max_normalize(y):
+    y_min = np.min(y)
+    y_max = np.max(y)
+    if y_max - y_min == 0:
+        return np.zeros_like(y)
+    return (y - y_min) / (y_max - y_min)
+
+def apply_threshold(y, lower=0.2, upper=1.0):
+    return np.clip(y, lower, upper)
+
+def normalize_and_threshold_all(data, lower=0.2, upper=1.0):
+    normed = []
+    for i in range(data.shape[1]):
+        y = data[:, i]
+        y_norm = min_max_normalize(y)
+        y_thresh = apply_threshold(y_norm, lower, upper)
+        normed.append(y_thresh)
+    return np.array(normed).T
